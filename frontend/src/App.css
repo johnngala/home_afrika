@@ -326,11 +326,8 @@ body {
   height: auto;
 }
 
-.listingdetail__realtor {
-  font-size: 2.4rem;
-  color: #181818;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+.listingdetail__description {
+  font-size: 1.8rem;
 }
 
 .listingdetail__contact {
