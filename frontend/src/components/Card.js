@@ -13,7 +13,7 @@ const Card = (props) => {
             <div className='card__header'>
                 <img className='card__header__photo' src={props.photo_main} alt='House' />
             </div>
-            <p className='card__location'>{props.address}, {props.city}, {props.state}</p>
+            <p className='card__location'>{props.city}</p>
             <div className='row'>
                 <div className='col-2-of-3'>
                     <p className='card__info'>Price: ${numberWithCommas(props.price)}</p>
@@ -34,9 +34,7 @@ const Card = (props) => {
 Card.propTypes = {
     title: PropTypes.string.isRequired,
     photo_main: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
-    state: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     bedrooms: PropTypes.number.isRequired,
     bathrooms: PropTypes.string.isRequired,

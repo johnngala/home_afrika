@@ -11,9 +11,7 @@ const Listings = ({listings}) => {
             return listingsOnPage.push(
                 <Card
                     title = {listing.title}
-                    address = {listing.address}
                     city = {listing.city}
-                    state = {listing.state}
                     price = {listing.price}
                     sale_type = {listing.sale_type}
                     home_type = {listing.home_type}

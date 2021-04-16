@@ -1,41 +1,72 @@
+
 import './App.css';
 import { BrowserRouter as Router ,Switch ,Route} from  'react-router-dom'
 
+import Navbar from './components/Navbar'
 import Home from './containers/Home'
 import About from './containers/About'
 import Contact from './containers/Contact'
 import Listing from './containers/Listings'
 import ListingDetail from './containers/ListingDetail'
-import Login from './containers/Login'
-import SignUp from './containers/SignUp'
-import Layout from './hoc/Layout'
+// import Layout from './hoc/Layout'
 import NotFound from './components/NotFound'
-import PrivateRoute from './components/privateRoute'
+import Footer from './components/Footer'
+import Landing from './containers/Landing'
+import { Component } from 'react';
 
-//import './sass/main.scss'
+import SideDrawer from './components/SideDrawer/SideDrawer'
+import BackDrop from './components/BackDrop/BackDrop'
 
-import {Provider} from 'react-redux'
-import store from './store'
 
-function App() {
+
+class  App extends Component {
+
+    state = {
+    sideDrawerOpen :false
+  }
+
+drawerToggleClickHandler = () => {
+  this.setState((prevState) => {
+    return { sideDrawerOpen : !prevState.sideDrawerOpen}
+  })
+}
+
+backDropClickHandler = () => {
+  this.setState({sideDrawerOpen : false})
+}
+
+render(){
+
+  
+    let backDrop;
+
+    if(this.state.sideDrawerOpen){
+      backDrop = <BackDrop click = {this.backDropClickHandler}/>
+    }
+
   return(
-    <Provider store = {store}>
-      <Router>
-        <Layout>
+
+    <Router>
+        {/* <Layout> */}
+          <Navbar drawerClickHandler = {this.drawerToggleClickHandler}/>
+          <SideDrawer show = {this.state.sideDrawerOpen}/>
+          {backDrop}
           <Switch>
-            <Route exact path = '/' component= {Home} />
+            <Route exact path = '/' component= {Landing} />
+            <Route path = '/search' component = {Home} />
             <Route  path = '/about' component= {About} />
             <Route  path = '/contact' component= {Contact} />
-            <PrivateRoute  exact path = '/listings/:id' component= {ListingDetail} />
+            <Route  exact path = '/listings/:id' component= {ListingDetail} />
             <Route  path = '/listings' component= {Listing} />
-            <Route  path = '/login' component= {Login} />
-            <Route  path = '/signup' component= {SignUp} />
             <Route  component = {NotFound} />
           </Switch>
-        </Layout>
+          <Footer/>
+        {/* </Layout> */}
       </Router>
-    </Provider>
-  )
+    )
+      
+  }
+
 }
 
 export default App;

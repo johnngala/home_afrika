@@ -1,156 +1,40 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
-import House from '../assets/images/house.jpg';
+
 
 const About = () => {
-    const [topSeller, setTopSeller] = useState([]);
-    const [realtors, setRealtors] = useState([]);
-
-    useEffect(() => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        const getTopSeller = async () => {
-            try {
-                const res = await axios.get('http://localhost:8000/api/realtors/topsellers', config); /*tampered with */
-                setTopSeller(res.data);
-            }
-            catch (err) {
-
-            }
-        };
-
-        getTopSeller();
-    }, []);
-
-    useEffect(() => {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        const getRealtors = async () => {
-            try {
-                const res = await axios.get('http://localhost:8000/api/realtors/', config);
-                setRealtors(res.data);
-            }
-            catch (err) {
-
-            }
-        };
-
-        getRealtors();
-    }, []);
-
-    const getAllRealtors = () => {
-        let allRealtors = [];
-        let results = [];
-
-        realtors.map(realtor => {
-            return allRealtors.push(
-                <Fragment key={realtor.id}>
-                    <div className='about__display'>
-                        <img className='about__display__image' src={realtor.photo} alt='' />
-                    </div>
-                    <h3 className='about__realtor'>{realtor.name}</h3>
-                    <p className='about__contact'>{realtor.phone}</p>
-                    <p className='about__contact'>{realtor.email}</p>
-                    <p className='about__about'>{realtor.description}</p>
-                </Fragment>
-            );
-        });
-
-        for (let i = 0; i < realtors.length; i += 3) {
-            results.push(
-                <div key={i} className='row'>
-                    <div className='col-1-of-3'>
-                        {allRealtors[i]}
-                    </div>
-                    <div className='col-1-of-3'>
-                        {allRealtors[i+1] ? allRealtors[i+1] : null}
-                    </div>
-                    <div className='col-1-of-3'>
-                        {allRealtors[i+2] ? allRealtors[i+2] : null}
-                    </div>
-                </div>
-            );
-        }
-
-        return results;
-    };  
-
-    const getTopSeller = () => {
-        let result = [];
-
-        topSeller.map(seller => {
-            return result.push(
-                <Fragment key={seller.id}>
-                    <div className='about__display'>
-                        <img className='about__display__image' src={seller.photo} alt='' />
-                    </div>
-                    <h3 className='about__topseller'>Top Seller:</h3>
-                    <p className='about__realtor'>{seller.name}</p>
-                    <p className='about__contact'>{seller.phone}</p>
-                    <p className='about__contact'>{seller.email}</p>
-                    <p className='about__about'>{seller.description}</p>
-                </Fragment>
-            );
-        });
-
-        return result;
-    };
-
+  
     return (
         <main className='about'>
             <Helmet>
-                <title>Realest Estate - About</title>
+                <title>Bold Collections - About</title>
                 <meta
                     name='description'
                     content='About us'
                 />
             </Helmet>
+
             <header className='about__header'>
-                <h1 className='about__heading'>About Realest Estate</h1>
+                <h1 className='about__heading'>Who we are!</h1>
             </header>
+
+             <div className = 'about__image'>
+                    <img src = 'images/about.jpg' alt = 'about' className = 'about__us__image'/>
+            </div>
+            
             <section className='about__info'>
-                <div className='roow'> {/*tampered with */}
-                    <div className='col-3-of-4'>
-                        <h2 className='about__subheading'>We find the perfect home for you</h2>
-                        <p className='about__paragraph'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae sapien a diam eleifend faucibus. 
-                            Suspendisse vitae sodales leo. Proin hendrerit aliquam interdum. Maecenas tellus ante, ultrices id 
-                            justo id, venenatis hendrerit orci. Orci varius natoque penatibus et magnis dis parturient montes, 
-                            nascetur ridiculus mus. Praesent aliquam condimentum ligula eget ullamcorper.
-                        </p>    
-                        <div className='about__display'>
-                            <img className='about__display__image__house' src={House} alt='' />
-                        </div>
-                        <p className='about__paragraph'>
-                            Suspendisse gravida magna posuere purus laoreet, et elementum velit placerat. Fusce at convallis erat. 
-                            Curabitur placerat eros eu interdum lacinia. Nulla facilisi. Duis pretium tristique porta. Donec 
-                            vehicula est a massa interdum vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Mauris malesuada lacus mauris, eu ultrices neque egestas eu. Class aptent taciti sociosqu ad litora 
-                            torquent per conubia nostra, per inceptos himenaeos. Morbi elementum enim vitae purus pulvinar tincidunt. 
-                            Aenean id viverra leo, non vehicula odio. Vestibulum volutpat a nulla at mattis. Nam cursus semper sapien, 
-                            eu consequat lacus iaculis vel.
-                        </p>
-                    </div>
-                    <div className='col-1-of-4'>
-                        {getTopSeller()}
-                    </div>
+                <div className='about__about'>  
+                    <h2 className='about__subheading'>Comfortable Living.Healthy Life</h2>
+                    <p className='about__paragraph'>
+                        Home Afrika is a real estate firm focused on delivering high quality and customized services to clients in Kenya. The firm began operations with a team of only four members of staff but has now grown to over two hundred and the initial five clients have multiplied many times over.
+                        Today, the company has made its presence strongly felt in the Kenyan property market and can with certainty declare itself a market leader. The firm offers a wide scope of real estate services, particularly specializing in real estate consultancy, management and sale of residential properties and a variety of commercial properties in Nairobi, Mombasa and East African region.
+                        Home Afrika has expertise in both rental property and property for sale in Kenya. In over two decades of its existence, Home Afrika has definitely impacted housing in Kenya in a big way. With one of the largest property listings by a property Agent in Kenya,Home Afrika continues  to epitomize its mantra of caring, always.
+                        Home Afrika offers highly specialized and professional property management services in Kenya. This is on the backbone of decades of experience and knowledge of the field. The professionalism and seamless property management of Home Afrika are unmatched in the region.
+                    </p>    
                 </div>
+                
             </section>
-            <section className='about__team'>
-                <div className='row'>
-                    <h2 className='about__subheading'>Meet out awesome team!</h2>
-                </div>
-                {getAllRealtors()}
-            </section>
+            
         </main>
     );
 };

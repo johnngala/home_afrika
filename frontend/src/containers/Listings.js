@@ -39,9 +39,7 @@ const Listings = () => {
             return display.push(
                 <Card
                     title={listing.title}
-                    address={listing.address}
                     city={listing.city}
-                    state={listing.state}
                     price={listing.price}
                     sale_type={listing.sale_type}
                     home_type={listing.home_type}
@@ -117,12 +115,19 @@ const Listings = () => {
     return (
         <main className='listings'>
             <Helmet>
-                <title>Realest Estate - Listings</title>
+                <title>Home Afrika- Listings</title>
                 <meta
                     name='description'
                     content='Listings page'
                 />
             </Helmet>
+
+            <div className = 'listings_header'>
+                <hr className = 'listings_header_hr'/>
+                <h1 className = 'listings_header_title'>Our Listings</h1>
+                <hr className = 'listings_header_hr'/>
+            </div>
+            
             <section className='listings__listings'>
                 {displayListings()}
             </section>

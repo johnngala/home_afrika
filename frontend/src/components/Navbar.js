@@ -1,60 +1,40 @@
 import React, { Fragment } from 'react'
 import {Link ,NavLink} from 'react-router-dom'
-import{ connect }from 'react-redux'
-import {logout} from '../actions/auth'
-import Alert from './Alert'
 import PropTypes from 'prop-types'
+import DrawerToggleButton from './SideDrawer/DrawerToggleButton'
 
 
-const Navbar = ({auth :{isAuthenticated ,loading} , logout}) => {
-    const authLinks = (
-        <a className = 'navbar__top__auth__link' onClick = {logout} href='#!'>Logout</a>
-    )
-    const guestLinks = (
-        <Fragment>
-            <Link className = 'navbar__top__auth__link--login' to = '/login'>Login</Link>
-            <Link className = 'navbar__top__auth__link--signup' to = '/signup'>Signup</Link>
-        </Fragment>
-    )
-
+const Navbar = (props) => {
+   
     return(
         <Fragment>
             <nav className  = 'navbar'>
                 <div className = 'navbar__top'>
                     <div className = 'navbar__top__logo'>
-                        <Link className = 'navbar__top__logo__link' to = '/'>Realest Estate</Link>
+                        <Link className = 'navbar__top__logo__link' to = '/'>Home Afrika</Link>
                     </div>
-                    <div className = 'navbar__top__auth'>
-                        {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
+                    
+                     <div className = 'navbar--nav__button'>
+                     <DrawerToggleButton click = {props.drawerClickHandler}/>
                     </div>
-                </div>
-                <div className = 'navbar__bottom'>
-                        <li className = 'navbar__bottom__item'>
-                            <NavLink className = 'navbar__bottom__item__link' exact to = '/'>Home</NavLink>
-                        </li>
-                        <li className = 'navbar__bottom__item'>
-                            <NavLink className = 'navbar__bottom__item__link' exact to = '/about'>About</NavLink>
+
+                     <li className = 'navbar__bottom__item'>
+                            <NavLink className = 'navbar__bottom__item__link' exact to = '/search'>Search</NavLink>
                         </li>
                         <li className = 'navbar__bottom__item'>
                             <NavLink className = 'navbar__bottom__item__link' exact to = '/listings'>Listings</NavLink>
                         </li>
                         <li className = 'navbar__bottom__item'>
+                            <NavLink className = 'navbar__bottom__item__link' exact to = '/about'>About</NavLink>
+                        </li>
+                        <li className = 'navbar__bottom__item'>
                             <NavLink className = 'navbar__bottom__item__link' exact to = '/contact'>Contact</NavLink>
                         </li>
-                    </div>
+                </div>
             </nav>
-            <Alert />
+
         </Fragment>
     )
 }
 
-Navbar.propTypes = {
-    logout : PropTypes.func.isRequired,
-    auth :PropTypes.object.isRequired
-}
-
-const mapStateToProps = state =>({
-    auth : state.auth
-})
-
-export default connect(mapStateToProps , {logout})(Navbar)
+export default Navbar

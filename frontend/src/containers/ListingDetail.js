@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const ListingDetail = (props) => {
     const [listing, setListing] = useState({});
-    const [realtor, setRealtor] = useState({});
     const [price, setPrice] = useState(0);
 
     const numberWithCommas = (x) => {
@@ -15,13 +14,7 @@ const ListingDetail = (props) => {
     useEffect(() => {
         const slug = props.match.params.id;
 
-        const config = {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        };
-
-        axios.get(`http://localhost:8000/api/listings/${slug}`, config)
+        axios.get(`http://localhost:8000/api/listings/${slug}`) 
         .then(res => {
             setListing(res.data);
             setPrice(numberWithCommas(res.data.price));
@@ -31,26 +24,7 @@ const ListingDetail = (props) => {
         });
     }, [props.match.params.id]);
 
-    useEffect(() => {
-        const id = listing.realtor;
-
-        const config = {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        };
-
-        if (id) {
-            axios.get(`http://localhost:8000/realtors/${id}`, config)
-            .then(res => {
-                setRealtor(res.data);
-            })
-            .catch(err => {
-
-            });
-        }
-    }, [listing.realtor]);
-
+    
     const displayInteriorImages = () => {
         let images = [];
 
@@ -276,7 +250,7 @@ const ListingDetail = (props) => {
     return (
         <div className='listingdetail'>
             <Helmet>
-                <title>Realest Estate - Listing | {`${listing.title}`}</title>
+                <title>Home Afrika - Listing | {`${listing.title}`}</title>
                 <meta
                     name='description'
                     content='Listing detail'
@@ -284,11 +258,11 @@ const ListingDetail = (props) => {
             </Helmet>
             <div className='listingdetail__header'>
                 <h1 className='listingdetail__title'>{listing.title}</h1>
-                <p className='listingdetail__location'>{listing.city}, {listing.state}, {listing.zipcode}</p>
+                <p className='listingdetail__location'>{listing.city}</p>
             </div>
             <div className='row'>
                 <div className='listingdetail__breadcrumb'>
-                <Link className='listingdetail__breadcrumb__link' to='/'>Home</Link> | {listing.title}
+                <Link className='listingdetail__breadcrumb__link' to='/listings'>Back</Link> | {listing.title}
                 </div>
             </div>
             <div className='row listing__items'>
@@ -297,15 +271,7 @@ const ListingDetail = (props) => {
                         <img className='listingdetail__display__image' src={listing.photo_main} alt='' />
                     </div>
                 </div>
-                <div className='col-1-of-4 '>
-                    <div className='listingdetail__display'>
-                        <img className='listingdetail__display__image' src={realtor.photo} alt='' />
-                    </div>
-                    <h3 className='listingdetail__realtor'>{realtor.name}</h3>
-                    <p className='listingdetail__contact'>{realtor.phone}</p>
-                    <p className='listingdetail__contact'>{realtor.email}</p>
-                    <p className='listingdetail__about'>{realtor.description}</p>
-                </div>
+                
             </div>
             <div className='row listing__items'>
                 <div className='col-1-of-2'>
@@ -320,10 +286,7 @@ const ListingDetail = (props) => {
                 <div className='col-1-of-2'>
                     <ul className='listingdetail__list'>
                         <li className='listingdetail__list__item'>Sale Type: {listing.sale_type}</li>
-                        <li className='listingdetail__list__item'>Address: {listing.address}</li>
                         <li className='listingdetail__list__item'>City: {listing.city}</li>
-                        <li className='listingdetail__list__item'>State: {listing.state}</li>
-                        <li className='listingdetail__list__item'>Zipcode: {listing.zipcode}</li>
                     </ul>
                 </div>
             </div>

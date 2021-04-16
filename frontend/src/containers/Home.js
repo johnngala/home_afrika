@@ -36,7 +36,7 @@ const Home = () => {
     return (
         <main className='home'>
             <Helmet>
-                <title>Realest Estate - Home</title>
+                <title>Home Afrika - Homepage</title>
                 <meta
                     name='description'
                     content='Realest Estate Home Page'
