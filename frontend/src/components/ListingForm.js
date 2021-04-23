@@ -27,7 +27,7 @@ const ListingForm = (props) => {
         }
     
         setLoading(true);
-        axios.post('http://localhost:8000/api/listings/search', { sale_type, price, bedrooms, home_type, bathrooms, sqft })
+        axios.post('https://django-1x-1.herokuapp.com/api/listings/search', { sale_type, price, bedrooms, home_type, bathrooms, sqft })
         .then(res => {
             setLoading(false);
             props.setListings(res.data);

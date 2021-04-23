@@ -14,7 +14,7 @@ const ListingDetail = (props) => {
     useEffect(() => {
         const slug = props.match.params.id;
 
-        axios.get(`http://localhost:8000/api/listings/${slug}`) 
+        axios.get(`https://django-1x-1.herokuapp.com/api/listings/${slug}`) 
         .then(res => {
             setListing(res.data);
             setPrice(numberWithCommas(res.data.price));
