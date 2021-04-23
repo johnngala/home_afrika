@@ -14,7 +14,7 @@ SECRET_KEY = '&kzk-n0b293y%^_ogxpi7zpgepi0!!zf=5hp!4l@ib%2s_%-1b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['homeafrikabackend.herokuapp.com']
 
 
 # Application definition
@@ -71,10 +71,10 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'realest_estate',
-        'USER': 'postgres',
-        'PASSWORD': 'Magician23',
-        'HOST': 'localhost'
+        'NAME': 'd6c6dfgk38cdmr',
+        'USER': 'yvacfnygksvekg',
+        'PASSWORD': 'b72e958569ff994ffd03ee3ed84220715dd1014ad50a0ff344462e99f4696c59',
+        'HOST': 'ec2-52-21-153-207.compute-1.amazonaws.com'
     }
 }
 
@@ -147,3 +147,4 @@ CORS_ORIGIN_ALLOW_ALL = True
 FILE_UPLOAD_PERMISSIONS = 0o640
 
 #AUTH_USER_MODEL = 'accounts.UserAccount'
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
